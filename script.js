@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             link.addEventListener('click', () => {
                 let contentToScroll = document.querySelector("#" + link.dataset.scrollToId)
                 console.log(contentToScroll);
-                
+
                 let targetPosition = contentToScroll.getBoundingClientRect().top - 50; // целевая позиция прокрутки
                 console.log(targetPosition);
                 window.scrollTo({
@@ -327,20 +327,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ScrollTrigger.refresh();
 
-        const lenis = new Lenis({
-            duration: 1,
+        const lenis = new Lenis()
+
+        lenis.on('scroll', ScrollTrigger.update)
+
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000)
         })
 
-        // lenis.on('scroll', (e) => {
-        //   console.log(e)
-        // })
-
-        function raf(time) {
-            lenis.raf(time)
-            requestAnimationFrame(raf)
-        }
-
-        requestAnimationFrame(raf)
+        gsap.ticker.lagSmoothing(0)
 
     }
     init()
