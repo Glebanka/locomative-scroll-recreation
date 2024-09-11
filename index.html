@@ -49,14 +49,14 @@
             </div>
         </div>
         <div class="summary__list">
-            <a class="summary__list-item" href="#">01. SPEED CONTROL<span class="">↓</span></a>
-            <a class="summary__list-item" href="#">02. SCROLL DIRECTION<span class="">↓</span></a>
-            <a class="summary__list-item" href="#">03. LERP EFFECT<span class="">↓</span></a>
-            <a class="summary__list-item" href="#">04. FIXED ELEMENTS<span class="">↓</span></a>
+            <a class="summary__list-item" data-scroll-to-id="speed-control">01. СПИД контроль<span>↓</span></a>
+            <a class="summary__list-item" data-scroll-to-id="scroll-direction">02. Скролл дирекшон<span>↓</span></a>
+            <a class="summary__list-item" data-scroll-to-id="lerp-section">03. Лерп элементы<span>↓</span></a>
+            <a class="summary__list-item" data-scroll-to-id="fixed-section">04. Фиксированные элементы<span>↓</span></a>
         </div>
     </section>
 
-    <section class="container speed-control">
+    <section class="container speed-control" id="speed-control">
         <span class="block-bubble speed-four first">
             4x
         </span>
@@ -142,7 +142,7 @@
         </div>
     </section>
 
-    <section class="container scroll-direction">
+    <section class="container scroll-direction" id="scroll-direction">
         <div class="scroll-direction__text-container">
             <div class="scroll-direction__title">02.<br>Скролл дирекшон</div>
             <div class="scroll-direction__text">Скролл дирекшон — чего?<br>это просто анимации с измененным углом и все.
@@ -170,7 +170,7 @@
     </section>
 
 
-    <section class="container lerp-section">
+    <section class="container lerp-section" id="lerp-section">
         <div class="lerp-section__text-container">
             <div class="lerp-section__title">03.<br>Лерп элементы</div>
             <div class="lerp-section__text">Линейная интерполяция<br>Вообще хз че это значит но,
@@ -222,18 +222,30 @@
     </section>
 
 
-    <section class="container fixed-section">
-        <div class="fixed-section__text-container">
+    <section class="container fixed-section" id="fixed-section">
+        <div class="fixed-section__text-container first">
             <div class="fixed-section__title">04.<br>Фиксированные элементы</div>
             <div class="fixed-section__text">Ну тут хотя бы похоже на правду<br>правда говоря пришлось имитировать
                 фиксированную позицию, но кому какая разница?</div>
         </div>
+        <div class="fixed-section__text-container second">
+            <div class="fixed-section__title">05.<br>Тут нет ничего нового</div>
+            <div class="fixed-section__text">я сейчас предельно серьезно<br>это просто текст чтобы немноженько заполнить пространство</div>
         </div>
-        <div class="fixed-wrapper">
-            <div class="fixed-container">
-                <img class="fixed-asset" alt="unsplash image"
-                    src="https://images.unsplash.com/photo-1725590249885-de0796581827?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+        <div class="fixed-containers">
+            <div class="fixed-wrapper">
+                <div class="fixed-container">
+                    <img class="fixed-asset" alt="unsplash image"
+                        src="https://images.unsplash.com/photo-1725590249885-de0796581827?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                </div>
             </div>
+            <div class="fixed-wrapper">
+                <div class="fixed-container">
+                    <img class="fixed-asset" alt="unsplash image"
+                        src="https://images.unsplash.com/photo-1725821031880-b8057ff92d52?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                </div>
+            </div>
+
         </div>
     </section>
 

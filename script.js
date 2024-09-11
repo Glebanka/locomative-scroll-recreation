@@ -19,6 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
         mainColorAnimateOnHeight('9100px', '+=3600', 'rgb(201, 212, 212)', 'rgb(201, 201, 212)');
     }
 
+    function scrollToInit() {
+        let scrollToLinks = document.querySelectorAll('[data-scroll-to-id]');
+        scrollToLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                let contentToScroll = document.querySelector("#" + link.dataset.scrollToId)
+                console.log(contentToScroll);
+                
+                let targetPosition = contentToScroll.getBoundingClientRect().top - 50; // целевая позиция прокрутки
+                console.log(targetPosition);
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: "smooth",
+                })
+            })
+        })
+    }
+
     function startAnimation() {
         gsap.timeline().fromTo(".header__title-text.first", { rotateX: "-90", y: "75%", z: "-500", opacity: 0.4 }, { rotateX: "0", y: 0, z: 0, opacity: 1, duration: 1 }, 0)
             .fromTo(".header__title-text.second", { rotateX: "-90", y: "50%", z: "-500", opacity: 0 }, { rotateX: "0", y: 0, z: 0, opacity: 1, duration: 1 }, 0.1)
@@ -230,7 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let lerpWords = gsap.utils.toArray(".lerp-text__container.third .lerp-word");
         lerpWords.forEach((word, index) => {
             index = index / 6
-            console.log(index);
 
             scrollTriggerTemplateDelay('third', index, duration / 2)
                 .fromTo(word, { y: "0%" }, { y: '-400%', duration: 1 }, 0);
@@ -263,13 +279,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         gsap.timeline({
             scrollTrigger: {
-                trigger: '.fixed-section__text-container', // Следим за этой секцией
+                trigger: '.fixed-section__text-container.first', // Следим за этой секцией
                 start: "top 50%", // Когда верх секции достигает низа экрана
-                end: "+=30%", // Когда низ секции достигает + три экрана
+                end: "+=" + (window.innerHeight / 2), // Когда низ секции достигает + три экрана
                 pin: true, // Закрепляем секцию
-                // pinSpacing: false // Если не хотите отступов при закреплении
-                // scrub: true,
-
+            }
+        })
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '.fixed-section__text-container.second', // Следим за этой секцией
+                start: "top 50%", // Когда верх секции достигает низа экрана
+                end: "+=" + (window.innerHeight / 2.2), // Когда низ секции достигает + три экрана
+                pin: true, // Закрепляем секцию
             }
         })
         // }).fromTo('.fixed-section__text-container',{},{y:"100%", ease: 'none',},0)
@@ -278,6 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function init() {
         gsap.registerPlugin(ScrollTrigger);
         backgroundAnimate()
+        scrollToInit()
         startAnimation()
         headerHeading()
         headerTitle()
