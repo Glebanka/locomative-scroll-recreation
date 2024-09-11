@@ -328,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ScrollTrigger.refresh();
 
         const lenis = new Lenis({
-            duration: 0.2,
+            duration: 1,
         })
 
         // lenis.on('scroll', (e) => {
