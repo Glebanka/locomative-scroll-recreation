@@ -127,6 +127,7 @@ html {
 .header__thematic-break {
   scale: 0;
   margin-top: 4rem;
+  border: 0.1rem #222 solid;
 }
 
 .summary {
@@ -347,7 +348,7 @@ html {
 
 .fixed-section {
   position: relative;
-  height: 100dvh;
+  height: 200dvh;
   margin-top: 50rem;
   display: flex;
   flex-flow: column;
@@ -394,11 +395,11 @@ html {
   display: inline-flex;
   flex-flow: column;
   gap: 2rem;
-  transform: translate(0, 70%);
-  height: 100%;
+  transform: translate(0, 35%);
+  height: 100dvh;
 }
 .fixed-section__text-container:nth-child(2) {
-  transform: translate(0, 185%);
+  transform: translate(0, 42%);
 
 }
 
@@ -481,4 +482,40 @@ html {
 }
 .lerp-text__container.fourth {
   transform: translate(0, -1600%);
+}
+.standart-section {
+  position: relative;
+  height: 100dvh;
+  margin-top: 50rem;
+  display: flex;
+  flex-flow: column;
+}
+.standart-section__title {
+  font-size: 2.8rem;
+  line-height: 1;
+  font-weight: 600;
+}
+.standart-section__text {
+  font-size: 1.8rem;
+  line-height: 1.5;
+}
+.standart-section__text-container {
+  display: inline-flex;
+  flex-flow: column;
+  gap: 2rem;
+  transform: translate(0, 35%);
+  height: 200dvh;
+}
+
+.image3d{
+  position: absolute;
+  right: 0px;
+  width: 90rem;
+  height: 90rem;
+  border-radius: 4rem;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+.section3d{
+  height: 300dvh;
 }
