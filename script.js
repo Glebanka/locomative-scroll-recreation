@@ -71,7 +71,7 @@ function bubblesInit() {
 function scrollToInit() {
     let scrollToLinks = document.querySelectorAll('[data-scroll-to-id]');
     scrollToLinks.forEach(link => {
-        link.addEventListener('click', () => {
+        link.onlick = () => {
             let contentToScroll = document.querySelector("#" + link.dataset.scrollToId)
             // console.log(contentToScroll);
 
@@ -81,7 +81,7 @@ function scrollToInit() {
                 top: targetPosition,
                 behavior: "smooth",
             })
-        })
+        }
     })
 }
 
@@ -313,22 +313,58 @@ function fixedSectionPin() {
 }
 
 function render3dImage() {
-    let ultraSpeaker3d = document.getElementById('image3d');
-    const context_ultraSpeaker3d = ultraSpeaker3d.getContext('2d');
-    // Создаем новый объект изображения
-    let image = new Image();
-    image.src = 'img/speaker/echo-solo0000.png';
+    let image3d = document.getElementById('image3d');
+    const section = document.querySelector('.section3d');
+    const contextImage3d = image3d.getContext('2d');
 
-    // Делаем отрисовку изображения после того, как оно загрузится
-    image.onload = function () {
-        context_ultraSpeaker3d.clearRect(0, 0, ultraSpeaker3d.width, ultraSpeaker3d.height);
-        context_ultraSpeaker3d.drawImage(image, 0, 0, ultraSpeaker3d.width, ultraSpeaker3d.height);
+    const frameCount = 50;
+
+    // создаем массив изображений и заполняем
+    const images = [];
+    for (let index = 0; index < frameCount; index++) {
+        const imgUltraSpeaker = new Image();
+        imgUltraSpeaker.src = `img/speaker/echo-solo (${index + 1}).png`;
+        images.push(imgUltraSpeaker);
+    }
+
+    const animatedFrame = {
+        frame: 0,
     };
+    // анимируем frame в ultraSpeaker
+    // при каждой итерации анимации frame становится на один меньше
+    gsap.to(animatedFrame, {
+        frame: frameCount - 1,
+        snap: 'frame',
+        ease: 'none',
+        scrollTrigger: {
+            scrub: 0.00001,
+            trigger: section,
+            start: 'top 90%',
+            end: '+=' + winHeight * 2,
+        },
+        onUpdate: () => {
+            // Запускаем анимацию с помощью requestAnimationFrame
+            requestAnimationFrame(renderImage);
+        },
+    });
+
+    images[0].onload = renderImage;
+
+    let lastFrame = -1;
+    function renderImage() {
+        if (animatedFrame.frame !== lastFrame) {
+            contextImage3d.clearRect(0, 0, image3d.width, image3d.height);
+            contextImage3d.drawImage(images[animatedFrame.frame], 0, 0, image3d.width, image3d.height);
+            lastFrame = animatedFrame.frame; // Сохраняем последний отрисованный кадр
+        }
+        // Используем requestAnimationFrame для плавности
+        requestAnimationFrame(renderImage);
+    }
 }
 
 function section3d() {
-    pinSectionFromCenter('.section3d__text-container', winHeight * 2)
-    pinSection('.image3d', 'top 10%', winHeight * 2)
+    // pinSectionFromCenter('.section3d__text-container', winHeight * 2)
+    pinSection('.section3d', 'top 18%', winHeight * 2)
 }
 
 function init() {
