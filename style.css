@@ -503,15 +503,15 @@ html {
   display: inline-flex;
   flex-flow: column;
   gap: 2rem;
-  transform: translate(0, 35%);
+  transform: translate(0, 10%);
   height: 200dvh;
 }
 
 .image3d{
   position: absolute;
   right: 0px;
-  width: 90rem;
-  height: 90rem;
+  width: 60rem;
+  height: 60rem;
   border-radius: 4rem;
   mix-blend-mode: multiply;
   opacity: 0.9;
