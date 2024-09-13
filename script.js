@@ -71,7 +71,7 @@ function bubblesInit() {
 function scrollToInit() {
     let scrollToLinks = document.querySelectorAll('[data-scroll-to-id]');
     scrollToLinks.forEach(link => {
-        link.onlick = () => {
+        link.onclick = () => {
             let contentToScroll = document.querySelector("#" + link.dataset.scrollToId)
             // console.log(contentToScroll);
 
